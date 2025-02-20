@@ -15,10 +15,12 @@ body {
   height: 100vh;
 }
 
+/* Roll Container */
 .main {
   background: white;
   display: inherit;
   align-items: inherit;
+  gap: 50px;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
@@ -38,5 +40,23 @@ button {
   color: white;
   width: 70px;
   border-radius: 10px;
+  cursor: pointer;
+}
+
+/* History Container  */
+
+.history-container {
+  text-align: center;
+  flex-direction: column;
+  border: solid black;
+  border-radius: 10px;
+  padding: 7px;
+}
+
+.history-roll h3 {
+  background: lightgrey;
+  padding: 2px;
+  border-radius: 5px;
+  margin: 3px 0;
   cursor: pointer;
 }
