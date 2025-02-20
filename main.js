@@ -10,13 +10,15 @@ function rollDice() {
   const randomNumber = Math.floor(Math.random() * maxNumber) + 1;
   rollNumber.textContent = randomNumber;
 
+  // Gerar H3 no History 
   const rollEntry = document.createElement("h3");
   rollEntry.textContent = `D${maxNumber}: ${randomNumber}`;
 
   historyRoll.appendChild(rollEntry);
-
+  
+  // Remover o entry +antigo
   while (historyRoll.children.length > 5) {
-    historyRoll.removeChild(historyRoll.firstChild); // Remove sempre o primeiro <h3>
+    historyRoll.removeChild(historyRoll.firstChild); 
   }
 }
 
