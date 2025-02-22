@@ -1,25 +1,45 @@
-// Espera o documento estar pronto antes de executar o script
 const rollButton = document.getElementById("roll_button");
 const rollNumber = document.getElementById("roll_number");
 const diceType = document.getElementById("dice_type");
 const historyRoll = document.getElementById("history_roll");
 
+// Carregar o som de rolagem
+const diceSound = new Audio("/Songs/dicesong1.mp3");
+
 function rollDice() {
-  // Pega o valor selecionado no select
   const maxNumber = parseInt(diceType.value);
-  const randomNumber = Math.floor(Math.random() * maxNumber) + 1;
-  rollNumber.textContent = randomNumber;
+  let animationTime = 500; // Tempo da animação (0.5s)
 
-  // Gerar H3 no History 
-  const rollEntry = document.createElement("h3");
-  rollEntry.textContent = `D${maxNumber}: ${randomNumber}`;
+  // Toca o som de rolagem
+  diceSound.currentTime = 0; // Reinicia o som caso já tenha tocado antes
+  diceSound.play();
 
-  historyRoll.appendChild(rollEntry);
-  
-  // Remover o entry +antigo
-  while (historyRoll.children.length > 5) {
-    historyRoll.removeChild(historyRoll.firstChild); 
-  }
+  // Faz a animação de rolagem (mostrando números aleatórios)
+  let count = 0;
+  const interval = setInterval(() => {
+    const fakeNumber = Math.floor(Math.random() * maxNumber) + 1;
+    rollNumber.textContent = fakeNumber;
+    count++;
+
+    if (count >= animationTime / 50) {
+      clearInterval(interval); // Para a animação
+      const finalNumber = Math.floor(Math.random() * maxNumber) + 1;
+      rollNumber.textContent = finalNumber;
+
+      // Criar H3 no histórico
+      const rollEntry = document.createElement("h3");
+      rollEntry.textContent = `D${maxNumber}: ${finalNumber}`;
+      historyRoll.appendChild(rollEntry);
+
+      // Rolar automaticamente para o final
+      historyRoll.scrollTop = historyRoll.scrollHeight;
+
+      // Mantém no máximo 5 registros no histórico
+      while (historyRoll.children.length > 5) {
+        historyRoll.removeChild(historyRoll.children[0]);
+      }
+    }
+  }, 50);
 }
 
 rollButton.addEventListener("click", rollDice);
