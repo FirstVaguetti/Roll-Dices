@@ -15,7 +15,6 @@ body {
   height: 100vh;
 }
 
-/* Header */
 
 /* Roll Container */
 .main {
@@ -73,7 +72,7 @@ button {
 }
 
 #history_roll::-webkit-scrollbar {
-  display: none; /* Chrome, Safari e Edge */
+  display: none; 
 }
 
 #roll_number {
