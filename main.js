@@ -33,11 +33,6 @@ function rollDice() {
 
       // Rolar automaticamente para o final
       historyRoll.scrollTop = historyRoll.scrollHeight;
-
-      // Mantém no máximo 5 registros no histórico
-      while (historyRoll.children.length > 5) {
-        historyRoll.removeChild(historyRoll.children[0]);
-      }
     }
   }, 50);
 }
